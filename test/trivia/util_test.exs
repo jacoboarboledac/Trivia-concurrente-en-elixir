@@ -1,5 +1,5 @@
 defmodule UtilTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   import ExUnit.CaptureIO
 
   test "leer/2 obtiene una cadena y elimina espacios exteriores" do
