@@ -79,6 +79,15 @@ defmodule Trivia.GestorJugadores do
     )
   end
 
+
+  def usuario_por_pid(pid_cliente, servidor \\ __MODULE__) do
+    GenServer.call(
+      servidor,
+      {:usuario_por_pid, pid_cliente}
+    )
+  end
+
+
   # -------------------------
   # CONEXIÓN Y SESIONES
   # -------------------------
@@ -169,6 +178,25 @@ defmodule Trivia.GestorJugadores do
         {:reply, respuesta, estado}
     end
   end
+
+
+  def handle_call(
+        {:usuario_por_pid, pid_cliente},
+        _from,
+        estado
+      ) do
+    respuesta =
+      case buscar_sesion(pid_cliente, estado.sesiones) do
+        nil ->
+          {:error, :no_autenticado}
+
+        usuario ->
+          {:ok, usuario}
+      end
+
+    {:reply, respuesta, estado}
+  end
+
 
   # -------------------------
   # DETECTAR CLIENTES DESCONECTADOS

@@ -287,4 +287,33 @@ defmodule Trivia.GestorJugadoresTest do
                context.servidor
              )
   end
+
+
+  test "identifica el usuario asociado a un PID", context do
+    assert {:ok, "pedro"} =
+             GestorJugadores.connect(
+               "pedro",
+               "12345",
+               context.servidor
+             )
+
+    assert {:ok, "pedro"} =
+             GestorJugadores.usuario_por_pid(
+               self(),
+               context.servidor
+             )
+  end
+
+  test "rechaza un PID sin sesion autenticada", context do
+    pid_inexistente = spawn(fn -> Process.sleep(1000) end)
+
+    assert {:error, :no_autenticado} =
+             GestorJugadores.usuario_por_pid(
+               pid_inexistente,
+               context.servidor
+             )
+
+    Process.exit(pid_inexistente, :kill)
+  end
+
 end
