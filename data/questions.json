@@ -1,0 +1,16 @@
+
+[
+  {
+    "id": 1,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál es el planeta más grande del sistema solar?",
+    "opciones": [
+      "Marte",
+      "Júpiter",
+      "Saturno",
+      "Neptuno"
+    ],
+    "respuesta_correcta": "B"
+  }
+]
