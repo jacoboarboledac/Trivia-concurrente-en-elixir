@@ -5,7 +5,7 @@
 - **Proyecto:** Proyecto final: Trivia Concurrente.
 - **Repositorio:** `jacoboarboledac/Trivia-concurrente-en-elixir`.
 - **Rama de trabajo:** `main`.
-- **Estado del repositorio al crear este documento:** solo se verificó `README.md`; todavía no se encontró `mix.exs`, código dentro de `lib/` ni este archivo de contexto.
+- **Estado actual:** se creó la estructura inicial de Mix en `main`; aún no se ha ejecutado la compilación ni las pruebas.
 
 ## 2. Objetivo
 Construir una trivia por consola en Elixir donde cada jugador humano compite contra al menos dos bots. Las preguntas se organizan por tema y dificultad; el nivel del jugador en cada tema depende de su historial. Las partidas deben ser independientes y ejecutarse concurrentemente.
@@ -59,14 +59,20 @@ Esta es la arquitectura recomendada por la guía, no una afirmación de que esos
 - La sustentación debe demostrar al menos dos clientes con partidas distintas ejecutándose simultáneamente, además de los bots.
 
 ## 8. Archivos y avances comprobados
-- `README.md` existe en GitHub y contiene únicamente una descripción breve del proyecto.
-- El archivo `util.ex` fue compartido en el espacio del proyecto, pero no se ha confirmado que esté subido al repositorio.
-- El módulo compartido se llama `Util` y contiene:
+- `mix.exs`: proyecto `:trivia_concurrente`, versión `0.1.0`, requisito Elixir `>= 1.14.0` y dependencia `jason ~> 1.4`.
+- `lib/trivia_concurrente.ex`: módulo principal con documentación inicial.
+- `lib/trivia/util.ex`: módulo `Util` incorporado desde el archivo compartido.
+- `test/test_helper.exs` y `test/trivia/util_test.exs`: configuración ExUnit y cinco pruebas iniciales para `Util`.
+- `.gitignore`: excluye compilados, dependencias y archivos locales de usuarios/resultados.
+- `data/.gitkeep`: conserva el directorio de datos en Git.
+- El `README.md` todavía conserva su descripción breve original.
+- El módulo `Util` contiene:
   - `leer(mensaje, :string)`: lee texto y elimina espacios/salto de línea exterior.
   - `leer(mensaje, :integer)` y `leer(mensaje, :float)`: convierten la entrada; si no es válida, muestran un error y retornan `0` o `0.0`.
   - `imprimir_error/1`: escribe en `:standard_error`.
   - `imprimir_mensaje/1`: escribe en la salida estándar.
-- No se ha verificado todavía un proyecto Mix ni otros módulos del juego en el repositorio.
+- Todavía no se han creado los módulos de lógica del juego (`Nivel`, `BancoPreguntas`, servidor, partidas, bots, clientes ni persistencia).
+- La compilación y las cinco pruebas todavía están pendientes de ejecución; el entorno disponible en esta sesión no tiene instalados `elixir` ni `mix`.
 
 ## 9. Decisiones y límites conocidos
 - La extensión opcional de varios humanos en una misma partida no forma parte del mínimo obligatorio; primero se debe completar el alcance de las secciones 1 a 14 de la guía.
@@ -74,13 +80,12 @@ Esta es la arquitectura recomendada por la guía, no una afirmación de que esos
 - Mantener separados los conceptos de **requisito**, **diseño propuesto** e **implementación comprobada**.
 
 ## 10. Próximos pasos sugeridos
-1. Crear la estructura de proyecto Mix y configurar `jason`.
-2. Incorporar `Util` al proyecto si se decide reutilizarlo.
-3. Implementar y probar primero módulos pequeños y deterministas: `nivel`, `banco_preguntas` y reglas de puntaje.
-4. Construir la persistencia y el gestor de jugadores.
-5. Implementar el supervisor y el `GenServer` de cada partida.
-6. Añadir bots, servidor, cliente y comunicación distribuida.
-7. Completar pruebas, README y demostración de concurrencia.
+1. Ejecutar `mix deps.get` y `mix test` en un equipo con Elixir instalado; corregir cualquier fallo encontrado.
+2. Implementar y probar módulos pequeños y deterministas: `Nivel`, `BancoPreguntas` y reglas de puntaje.
+3. Construir la persistencia y el gestor de jugadores.
+4. Implementar el supervisor y el `GenServer` de cada partida.
+5. Añadir bots, servidor, cliente y comunicación distribuida.
+6. Completar banco de preguntas, README y demostración de concurrencia.
 
 ## 11. Cómo mantener este documento
 Actualizar este archivo al cerrar cada etapa: módulos creados, funciones principales, pruebas ejecutadas y resultado, decisiones tomadas, problemas pendientes y siguiente tarea. No marcar como terminado nada que no se haya probado.
