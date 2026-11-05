@@ -58,6 +58,15 @@ defmodule Trivia.GestorJugadores do
     )
   end
 
+
+def connect(usuario, clave, pid_cliente, servidor) do
+  GenServer.call(
+    servidor,
+    {:connect, usuario, clave, pid_cliente}
+  )
+end
+
+
   def disconnect(servidor \\ __MODULE__) do
     GenServer.call(
       servidor,
