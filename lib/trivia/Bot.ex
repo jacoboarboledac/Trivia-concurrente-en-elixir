@@ -7,22 +7,28 @@ defmodule Trivia.Bot do
   Cada bot funciona en su propio proceso GenServer.
   """
 
-  # -------------------------
   # INICIO DEL PROCESO
-  # -------------------------
 
   def start_link(opciones) do
     GenServer.start_link(__MODULE__, opciones)
   end
 
-  # -------------------------
   # CONSULTAS
-  # -------------------------
 
   def consultar(pid) do
     GenServer.call(pid, :consultar)
   end
 
+  # RECIBIR PREGUNTAS
+
+  def pregunta(pid, pregunta, referencia, tiempo) do
+    GenServer.cast(
+      pid,
+      {:pregunta, pregunta, referencia, tiempo}
+    )
+  end
+
+  # DECIDIR RESPUESTA
 
   def decidir(dificultad, nivel, respuesta_correcta, tiempo_pregunta)
       when dificultad in [:facil, :dificil] and
@@ -63,15 +69,17 @@ defmodule Trivia.Bot do
     retardo =
       minimo + :rand.uniform() * (maximo - minimo)
 
-    {respuesta, round(retardo * tiempo_pregunta * 1000)}
+    {
+      respuesta,
+      round(retardo * tiempo_pregunta * 1000)
+    }
   end
 
-  def decidir(_, _, _, _), do: {:error, :parametros_invalidos}
+  def decidir(_, _, _, _) do
+    {:error, :parametros_invalidos}
+  end
 
-
-  # -------------------------
   # INICIALIZACIÓN
-  # -------------------------
 
   @impl true
   def init(opciones) do
@@ -84,12 +92,59 @@ defmodule Trivia.Bot do
     {:ok, estado}
   end
 
-  # -------------------------
-  # MANEJO DE CONSULTAS
-  # -------------------------
+  # CONSULTAS AL PROCESO
 
   @impl true
   def handle_call(:consultar, _from, estado) do
     {:reply, estado, estado}
+  end
+
+  # RECEPCIÓN DE PREGUNTAS
+
+  @impl true
+  def handle_cast(
+        {:pregunta, pregunta, referencia, tiempo},
+        estado
+      ) do
+
+    nivel = pregunta["nivel"]
+    respuesta_correcta = pregunta["respuesta_correcta"]
+
+    {respuesta, retardo} =
+      decidir(
+        estado.dificultad,
+        nivel,
+        respuesta_correcta,
+        tiempo
+      )
+
+    Process.send_after(
+      self(),
+      {:enviar_respuesta, respuesta, referencia},
+      retardo
+    )
+
+    {:noreply, estado}
+  end
+
+  # ENVÍO DE RESPUESTAS A LA PARTIDA
+
+  @impl true
+  def handle_info(
+        {:enviar_respuesta, respuesta, referencia},
+        estado
+      ) do
+
+    send(
+      estado.partida,
+      {
+        :respuesta_bot,
+        estado.nombre,
+        respuesta,
+        referencia
+      }
+    )
+
+    {:noreply, estado}
   end
 end
