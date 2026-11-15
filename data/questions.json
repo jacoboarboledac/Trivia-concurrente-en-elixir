@@ -1,4 +1,3 @@
-
 [
   {
     "id": 1,
@@ -12,5 +11,1240 @@
       "Neptuno"
     ],
     "respuesta_correcta": "B"
+  },
+  {
+    "id": 2,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál es la fórmula química del agua?",
+    "opciones": [
+      "CO₂",
+      "O₂",
+      "H₂O",
+      "NaCl"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 3,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿Qué gas constituye la mayor parte de la atmósfera terrestre?",
+    "opciones": [
+      "Oxígeno",
+      "Dióxido de carbono",
+      "Argón",
+      "Nitrógeno"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 4,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿Qué órgano impulsa la sangre por el cuerpo humano?",
+    "opciones": [
+      "Corazón",
+      "Pulmón",
+      "Hígado",
+      "Estómago"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 5,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál es la estrella del sistema solar?",
+    "opciones": [
+      "Sirio",
+      "Sol",
+      "Polaris",
+      "Betelgeuse"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 6,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿En qué estado de la materia un material mantiene forma y volumen propios?",
+    "opciones": [
+      "Líquido",
+      "Gaseoso",
+      "Sólido",
+      "Plasma"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 7,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿Qué gas absorben principalmente las plantas durante la fotosíntesis?",
+    "opciones": [
+      "Oxígeno",
+      "Nitrógeno",
+      "Helio",
+      "Dióxido de carbono"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 8,
+    "tema": "ciencia",
+    "nivel": "basico",
+    "enunciado": "¿Cómo se llama el satélite natural de la Tierra?",
+    "opciones": [
+      "Luna",
+      "Fobos",
+      "Titán",
+      "Europa"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 9,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué elemento químico representa el símbolo Na?",
+    "opciones": [
+      "Nitrógeno",
+      "Sodio",
+      "Neón",
+      "Níquel"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 10,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuál es la unidad del SI para la resistencia eléctrica?",
+    "opciones": [
+      "Voltio",
+      "Amperio",
+      "Ohmio",
+      "Vatio"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 11,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿En qué orgánulo se produce la mayor parte del ATP en células eucariotas mediante respiración celular?",
+    "opciones": [
+      "Ribosoma",
+      "Núcleo",
+      "Lisosoma",
+      "Mitocondria"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 12,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué ecuación expresa la segunda ley de Newton para masa constante?",
+    "opciones": [
+      "F = m × a",
+      "E = m × c²",
+      "V = I × R",
+      "p = m / V"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 13,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cómo se clasifica normalmente una disolución con pH 3?",
+    "opciones": [
+      "Neutra",
+      "Ácida",
+      "Básica",
+      "Saturada"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 14,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué describe un alelo dominante en la herencia mendeliana simple?",
+    "opciones": [
+      "Solo aparece con dos copias",
+      "Siempre es el más frecuente",
+      "Se expresa en un heterocigoto",
+      "Nunca puede mutar"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 15,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuál es el valor aproximado de la aceleración de la gravedad cerca de la superficie terrestre?",
+    "opciones": [
+      "1,6 m/s²",
+      "3,7 m/s²",
+      "98 m/s²",
+      "9,8 m/s²"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 16,
+    "tema": "ciencia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuántos cromosomas tiene normalmente una célula somática humana?",
+    "opciones": [
+      "46",
+      "23",
+      "44",
+      "48"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 17,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué ecuación corresponde a la ley de los gases ideales?",
+    "opciones": [
+      "F = ma",
+      "PV = nRT",
+      "E = hf",
+      "V = IR"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 18,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué cantidad determina el número atómico de un elemento?",
+    "opciones": [
+      "El número de neutrones",
+      "La suma de protones y neutrones",
+      "El número de protones",
+      "El número de electrones de valencia"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 19,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué tipo de ARN transporta aminoácidos hasta el ribosoma?",
+    "opciones": [
+      "ARN mensajero (ARNm)",
+      "ARN ribosómico (ARNr)",
+      "ARN pequeño nuclear (ARNsn)",
+      "ARN de transferencia (ARNt)"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 20,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué estructura mitocondrial se encuentra la cadena de transporte de electrones?",
+    "opciones": [
+      "Membrana interna",
+      "Membrana externa",
+      "Matriz nuclear",
+      "Citosol"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 21,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué enzima une los fragmentos de Okazaki durante la replicación del ADN?",
+    "opciones": [
+      "Helicasa",
+      "ADN ligasa",
+      "Primasa",
+      "Topoisomerasa"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 22,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué proceso permite obtener distintos ARNm maduros a partir de un mismo pre-ARNm?",
+    "opciones": [
+      "Traducción inversa",
+      "Replicación semiconservativa",
+      "Corte y empalme alternativo",
+      "Desnaturalización térmica"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 23,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿Hacia qué parte del espectro se desplaza la luz de una galaxia que se aleja por efecto Doppler?",
+    "opciones": [
+      "Hacia el violeta",
+      "Hacia el ultravioleta",
+      "No puede desplazarse",
+      "Hacia el rojo"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 24,
+    "tema": "ciencia",
+    "nivel": "avanzado",
+    "enunciado": "¿Cuál es la expresión de la energía de un fotón en función de su frecuencia?",
+    "opciones": [
+      "E = h × f",
+      "E = m × g × h",
+      "P = V × I",
+      "F = Gm₁m₂/r²"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 25,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿En qué año llegó la expedición de Cristóbal Colón al Caribe?",
+    "opciones": [
+      "1453",
+      "1492",
+      "1519",
+      "1607"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 26,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿Qué ciudad fue la capital del Imperio romano de Occidente durante gran parte de su historia?",
+    "opciones": [
+      "Atenas",
+      "Alejandría",
+      "Roma",
+      "Jerusalén"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 27,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿En qué país se encuentran las pirámides de Guiza?",
+    "opciones": [
+      "Grecia",
+      "México",
+      "Irak",
+      "Egipto"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 28,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿Con qué innovación se asocia a Johannes Gutenberg en Europa?",
+    "opciones": [
+      "Imprenta de tipos móviles",
+      "Máquina de vapor",
+      "Telégrafo eléctrico",
+      "Brújula magnética"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 29,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿En qué año comenzó la Revolución francesa?",
+    "opciones": [
+      "1776",
+      "1789",
+      "1815",
+      "1848"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 30,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿Qué fecha se conmemora como el Grito de Independencia de Colombia?",
+    "opciones": [
+      "7 de agosto de 1819",
+      "12 de octubre de 1492",
+      "20 de julio de 1810",
+      "9 de abril de 1948"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 31,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿En qué año comenzó la Primera Guerra Mundial?",
+    "opciones": [
+      "1905",
+      "1918",
+      "1939",
+      "1914"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 32,
+    "tema": "historia",
+    "nivel": "basico",
+    "enunciado": "¿En qué año cayó el Muro de Berlín?",
+    "opciones": [
+      "1989",
+      "1945",
+      "1961",
+      "1991"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 33,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿En qué año se firmó el Tratado de Versalles que puso fin formalmente a la guerra entre Alemania y los Aliados?",
+    "opciones": [
+      "1914",
+      "1919",
+      "1923",
+      "1945"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 34,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿En qué batalla fue derrotado definitivamente Napoleón en 1815?",
+    "opciones": [
+      "Austerlitz",
+      "Trafalgar",
+      "Waterloo",
+      "Borodinó"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 35,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué batalla de 1819 fue decisiva para la independencia de la Nueva Granada?",
+    "opciones": [
+      "Batalla de Carabobo",
+      "Batalla de Ayacucho",
+      "Batalla de Pichincha",
+      "Batalla de Boyacá"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 36,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuál fue la capital histórica del Imperio inca?",
+    "opciones": [
+      "Cusco",
+      "Tenochtitlan",
+      "Quito",
+      "Lima"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 37,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿Quiénes escribieron el Manifiesto comunista de 1848?",
+    "opciones": [
+      "Adam Smith y David Ricardo",
+      "Karl Marx y Friedrich Engels",
+      "Voltaire y Rousseau",
+      "Lenin y Trotski"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 38,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué nombre recibe actualmente la antigua Constantinopla?",
+    "opciones": [
+      "Ankara",
+      "Atenas",
+      "Estambul",
+      "Sofía"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 39,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿En qué año se proclamó la Declaración de Independencia de Estados Unidos?",
+    "opciones": [
+      "1789",
+      "1810",
+      "1865",
+      "1776"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 40,
+    "tema": "historia",
+    "nivel": "intermedio",
+    "enunciado": "¿En qué país comenzó la Revolución Industrial durante el siglo XVIII?",
+    "opciones": [
+      "Gran Bretaña",
+      "Francia",
+      "España",
+      "Rusia"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 41,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué año se firmaron los tratados de la Paz de Westfalia?",
+    "opciones": [
+      "1492",
+      "1648",
+      "1555",
+      "1713"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 42,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué año se promulgó el Edicto de Milán asociado con la tolerancia religiosa en el Imperio romano?",
+    "opciones": [
+      "64",
+      "212",
+      "313",
+      "380"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 43,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué año cayó Tenochtitlan ante las fuerzas de Hernán Cortés y sus aliados?",
+    "opciones": [
+      "1492",
+      "1510",
+      "1533",
+      "1521"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 44,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué año comenzó la Restauración Meiji en Japón?",
+    "opciones": [
+      "1868",
+      "1603",
+      "1853",
+      "1912"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 45,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué congreso reorganizó el orden europeo tras las guerras napoleónicas?",
+    "opciones": [
+      "Congreso de Berlín de 1884",
+      "Congreso de Viena",
+      "Concilio de Trento",
+      "Congreso de Filadelfia"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 46,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué año declaró Haití su independencia?",
+    "opciones": [
+      "1776",
+      "1791",
+      "1804",
+      "1821"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 47,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué año se sitúa tradicionalmente el comienzo de la República romana?",
+    "opciones": [
+      "753 a. C.",
+      "44 a. C.",
+      "27 a. C.",
+      "509 a. C."
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 48,
+    "tema": "historia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué año tuvo lugar la batalla naval de Lepanto?",
+    "opciones": [
+      "1571",
+      "1453",
+      "1588",
+      "1648"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 49,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál es el océano más extenso de la Tierra?",
+    "opciones": [
+      "Océano Atlántico",
+      "Océano Pacífico",
+      "Océano Índico",
+      "Océano Ártico"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 50,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál es el continente de mayor superficie?",
+    "opciones": [
+      "África",
+      "Europa",
+      "Asia",
+      "Oceanía"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 51,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿En qué océano desemboca el río Amazonas?",
+    "opciones": [
+      "Pacífico",
+      "Índico",
+      "Ártico",
+      "Atlántico"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 52,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿Qué latitud corresponde a la línea del ecuador?",
+    "opciones": [
+      "0°",
+      "23,5° norte",
+      "66,5° sur",
+      "90°"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 53,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿En qué continente se encuentra Colombia?",
+    "opciones": [
+      "Europa",
+      "América del Sur",
+      "Asia",
+      "África"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 54,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál es la capital de Argentina?",
+    "opciones": [
+      "Córdoba",
+      "Rosario",
+      "Buenos Aires",
+      "Mendoza"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 55,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿En qué continente se encuentra el desierto del Sahara?",
+    "opciones": [
+      "Asia",
+      "Oceanía",
+      "América del Sur",
+      "África"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 56,
+    "tema": "geografia",
+    "nivel": "basico",
+    "enunciado": "¿En qué zona de América se encuentra la cordillera de los Andes?",
+    "opciones": [
+      "Oeste de América del Sur",
+      "Este de América del Norte",
+      "Centro de Europa",
+      "Norte de Asia"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 57,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué ocurre en un límite divergente entre placas tectónicas?",
+    "opciones": [
+      "Las placas se fusionan",
+      "Las placas se separan",
+      "Una placa deja de moverse",
+      "Ambas placas desaparecen"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 58,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué meridiano se usa como referencia para la longitud 0°?",
+    "opciones": [
+      "Ecuador",
+      "Trópico de Capricornio",
+      "Greenwich",
+      "Línea internacional de cambio de fecha"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 59,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuál es la cordillera continental más larga del mundo?",
+    "opciones": [
+      "Los Alpes",
+      "El Himalaya",
+      "Los Pirineos",
+      "Los Andes"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 60,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué río europeo atraviesa Budapest?",
+    "opciones": [
+      "Danubio",
+      "Rin",
+      "Sena",
+      "Támesis"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 61,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Entre qué dos países se encuentra el lago Titicaca?",
+    "opciones": [
+      "Chile y Argentina",
+      "Perú y Bolivia",
+      "Colombia y Venezuela",
+      "Brasil y Paraguay"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 62,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuál es la causa principal de la sucesión de día y noche?",
+    "opciones": [
+      "Traslación terrestre",
+      "Fases de la Luna",
+      "Rotación terrestre",
+      "Variación de las mareas"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 63,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué rasgo caracteriza al clima mediterráneo?",
+    "opciones": [
+      "Lluvia constante y temperaturas polares",
+      "Inviernos siempre secos y veranos con nieve",
+      "Ausencia total de estaciones",
+      "Veranos secos e inviernos más lluviosos"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 64,
+    "tema": "geografia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuál es la capital de Canadá?",
+    "opciones": [
+      "Ottawa",
+      "Toronto",
+      "Vancouver",
+      "Montreal"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 65,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué estrecho conecta el mar Negro con el mar de Mármara?",
+    "opciones": [
+      "Gibraltar",
+      "Bósforo",
+      "Ormuz",
+      "Bering"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 66,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿Cuál es el lago más profundo del mundo?",
+    "opciones": [
+      "Victoria",
+      "Titicaca",
+      "Baikal",
+      "Superior"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 67,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿Hasta cuántas millas náuticas puede extenderse normalmente la zona económica exclusiva de un Estado desde sus líneas de base?",
+    "opciones": [
+      "12 millas náuticas",
+      "24 millas náuticas",
+      "500 millas náuticas",
+      "200 millas náuticas"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 68,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿Cuál es la selva tropical más extensa del mundo?",
+    "opciones": [
+      "Amazonía",
+      "Congo",
+      "Daintree",
+      "Sundarbans"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 69,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué país rodea completamente a Lesoto?",
+    "opciones": [
+      "Namibia",
+      "Sudáfrica",
+      "Zimbabue",
+      "Botsuana"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 70,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué tipo climático representa Af en la clasificación de Köppen?",
+    "opciones": [
+      "Desértico cálido",
+      "Mediterráneo de verano seco",
+      "Tropical lluvioso sin estación seca",
+      "Tundra"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 71,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿En qué océano se localiza la fosa de las Marianas?",
+    "opciones": [
+      "Atlántico",
+      "Índico",
+      "Ártico",
+      "Pacífico"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 72,
+    "tema": "geografia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué corriente fría influye en las costas de Perú y el norte de Chile?",
+    "opciones": [
+      "Corriente de Humboldt",
+      "Corriente del Golfo",
+      "Corriente de Kuroshio",
+      "Corriente de Agulhas"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 73,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Qué significa la sigla CPU en informática?",
+    "opciones": [
+      "Unidad de conexión portátil",
+      "Unidad central de procesamiento",
+      "Control de potencia universal",
+      "Centro de programas de usuario"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 74,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Qué tipo de memoria suele perder su contenido al apagarse el computador?",
+    "opciones": [
+      "SSD",
+      "ROM",
+      "RAM",
+      "Disco duro"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 75,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Qué protocolo se utiliza comúnmente para transferir páginas web?",
+    "opciones": [
+      "SMTP",
+      "FTP",
+      "SSH",
+      "HTTP"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 76,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál de estos dispositivos se utiliza principalmente para introducir texto?",
+    "opciones": [
+      "Teclado",
+      "Monitor",
+      "Impresora",
+      "Altavoz"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 77,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Qué significa USB?",
+    "opciones": [
+      "User System Binary",
+      "Universal Serial Bus",
+      "Universal Server Backup",
+      "Unified Screen Base"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 78,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Cuál de los siguientes es un sistema operativo?",
+    "opciones": [
+      "Python",
+      "HTML",
+      "Linux",
+      "MySQL"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 79,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Qué símbolos utiliza el sistema de numeración binario?",
+    "opciones": [
+      "1 y 2",
+      "0 a 9",
+      "A a F",
+      "0 y 1"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 80,
+    "tema": "tecnologia",
+    "nivel": "basico",
+    "enunciado": "¿Qué dispositivo conecta redes y dirige paquetes entre ellas?",
+    "opciones": [
+      "Router",
+      "Micrófono",
+      "Escáner",
+      "Monitor"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 81,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué instrucción SQL permite consultar filas de una tabla?",
+    "opciones": [
+      "INSERT",
+      "SELECT",
+      "UPDATE",
+      "DROP"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 82,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué comando de Git guarda una confirmación de cambios en el repositorio local?",
+    "opciones": [
+      "git fetch",
+      "git status",
+      "git commit",
+      "git log"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 83,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuántos bits tiene una dirección IPv4?",
+    "opciones": [
+      "16 bits",
+      "64 bits",
+      "128 bits",
+      "32 bits"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 84,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué protocolo de seguridad utiliza normalmente HTTPS para proteger la comunicación?",
+    "opciones": [
+      "TLS",
+      "Telnet",
+      "FTP",
+      "ICMP"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 85,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué servicio traduce nombres de dominio a direcciones IP?",
+    "opciones": [
+      "DHCP",
+      "DNS",
+      "SMTP",
+      "NTP"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 86,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Cuál es la complejidad temporal de una búsqueda binaria en una lista ordenada?",
+    "opciones": [
+      "O(n²)",
+      "O(n)",
+      "O(log n)",
+      "O(2ⁿ)"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 87,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué propiedad exige una API REST respecto al estado de las peticiones?",
+    "opciones": [
+      "Que todas las peticiones usen WebSockets",
+      "Que no existan recursos identificables",
+      "Que solo admita peticiones POST",
+      "Que cada petición contenga la información necesaria (sin estado de sesión en servidor)"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 88,
+    "tema": "tecnologia",
+    "nivel": "intermedio",
+    "enunciado": "¿Qué comando de Git copia un repositorio existente a una carpeta local?",
+    "opciones": [
+      "git clone",
+      "git branch",
+      "git merge",
+      "git reset"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 89,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué función de Elixir envía una solicitud asíncrona a un GenServer?",
+    "opciones": [
+      "GenServer.call/3",
+      "GenServer.cast/2",
+      "Process.monitor/1",
+      "Agent.get/3"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 90,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué función de callback recibe un mensaje enviado con send/2 a un GenServer?",
+    "opciones": [
+      "handle_call/3",
+      "init/1",
+      "handle_info/2",
+      "terminate/2"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 91,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué mecanismo OTP inicia y supervisa procesos hijos que se agregan durante la ejecución?",
+    "opciones": [
+      "Task.await",
+      "Enum.reduce",
+      "String.split",
+      "DynamicSupervisor"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 92,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué mensaje recibe un proceso que monitorea a otro cuando este termina?",
+    "opciones": [
+      "{:DOWN, ref, :process, pid, motivo}",
+      "{:EXIT, ref}",
+      "{:REPLY, pid}",
+      "{:START, ref}"
+    ],
+    "respuesta_correcta": "A"
+  },
+  {
+    "id": 93,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué llamada a GenServer espera normalmente una respuesta antes de continuar?",
+    "opciones": [
+      "GenServer.cast/2",
+      "GenServer.call/3",
+      "send/2",
+      "Process.send_after/3"
+    ],
+    "respuesta_correcta": "B"
+  },
+  {
+    "id": 94,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué función de Elixir programa el envío de un mensaje a un proceso después de un retardo?",
+    "opciones": [
+      "Process.monitor/1",
+      "GenServer.stop/3",
+      "Process.send_after/3",
+      "Enum.each/2"
+    ],
+    "respuesta_correcta": "C"
+  },
+  {
+    "id": 95,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué función conviene usar para medir duración de una ronda sin depender de ajustes del reloj del sistema?",
+    "opciones": [
+      "Date.utc_today/0",
+      "System.get_env/1",
+      "Calendar.strftime/2",
+      "System.monotonic_time/1"
+    ],
+    "respuesta_correcta": "D"
+  },
+  {
+    "id": 96,
+    "tema": "tecnologia",
+    "nivel": "avanzado",
+    "enunciado": "¿Qué mecanismo OTP permite reiniciar un GenServer que falla sin reiniciar los demás procesos supervisados?",
+    "opciones": [
+      "Un supervisor con estrategia adecuada",
+      "Una variable global",
+      "Un archivo CSV",
+      "Una llamada a IO.gets"
+    ],
+    "respuesta_correcta": "A"
   }
 ]

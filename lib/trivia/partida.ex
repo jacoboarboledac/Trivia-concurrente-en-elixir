@@ -8,7 +8,7 @@ defmodule Trivia.Partida do
 
   @niveles [:basico, :intermedio, :avanzado]
   @opciones ["A", "B", "C", "D"]
-  @pausa_entre_rondas 3000
+  @pausa_entre_rondas 2000
 
   # INICIO DEL PROCESO
 
@@ -159,8 +159,6 @@ defmodule Trivia.Partida do
 
         case Trivia.Bot.start_link(opciones) do
           {:ok, pid_bot} ->
-            Process.unlink(pid_bot)
-
             monitor = Process.monitor(pid_bot)
 
             jugador = %{
@@ -194,10 +192,10 @@ defmodule Trivia.Partida do
   # INICIAR PARTIDA
 
   def handle_call(
-      {:iniciar, preguntas, nivel},
-      _from,
-      estado
-    ) do
+        {:iniciar, preguntas, nivel},
+        _from,
+        estado
+      ) do
     cond do
       estado.estado != :esperando ->
         {:reply, {:error, :partida_ya_iniciada}, estado}
@@ -221,6 +219,7 @@ defmodule Trivia.Partida do
         nuevo_estado = %{
           estado
           | preguntas: preguntas,
+            nivel: nivel,
             estado: :en_curso
         }
 
@@ -259,7 +258,15 @@ defmodule Trivia.Partida do
           {:partida_cancelada, estado.id}
         )
 
-        {:reply, :ok, detener_bots(nuevo_estado)}
+        GenServer.cast(
+          estado.gestor,
+          {:partida_cerrada, estado.id, self()}
+        )
+
+        {:reply, :ok,
+         nuevo_estado
+         |> detener_bots()
+         |> programar_cierre()}
 
       :en_curso ->
         nuevo_estado = finalizar_partida(estado)
@@ -330,6 +337,19 @@ defmodule Trivia.Partida do
 
   # DETECTAR PROCESOS DESCONECTADOS
 
+  # Ignorar cambios de jugadores tras finalizar o cancelar
+
+  def handle_info(
+        {:DOWN, monitor, :process, _pid, _motivo},
+        %{estado: estado_partida} = estado
+      )
+      when estado_partida in [:finalizada, :cancelada] do
+    nuevos_monitores =
+      Map.delete(estado.monitores, monitor)
+
+    {:noreply, %{estado | monitores: nuevos_monitores}}
+  end
+
   def handle_info(
         {:DOWN, monitor, :process, _pid, _motivo},
         estado
@@ -344,10 +364,25 @@ defmodule Trivia.Partida do
           | monitores: monitores
         }
 
+        GenServer.cast(
+          nuevo_estado.gestor,
+          {:partida_cerrada, nuevo_estado.id, self()}
+        )
+
         if estado.estado in [:en_curso, :pausa] do
           {:noreply, finalizar_partida(nuevo_estado)}
         else
-          {:noreply, detener_bots(%{nuevo_estado | estado: :cancelada})}
+          cancelado = %{nuevo_estado | estado: :cancelada}
+
+          GenServer.cast(
+            cancelado.gestor,
+            {:partida_cerrada, cancelado.id, self()}
+          )
+
+          {:noreply,
+           cancelado
+           |> detener_bots()
+           |> programar_cierre()}
         end
 
       {{:bot, nombre}, monitores} ->
@@ -367,6 +402,17 @@ defmodule Trivia.Partida do
 
         {:noreply, cerrar_si_completa(nuevo_estado)}
     end
+  end
+
+  # TERMINAR EL PROCESO DE UNA PARTIDA CERRADA
+
+  @impl true
+  def handle_info(
+        :cerrar_proceso,
+        %{estado: estado_partida} = estado
+      )
+      when estado_partida in [:finalizada, :cancelada] do
+    {:stop, :normal, estado}
   end
 
   # FINALIZACIÓN DEL PROCESO
@@ -582,15 +628,17 @@ defmodule Trivia.Partida do
     end
   end
 
-  # COMPROBAR SI TODOS RESPONDIERON
+  # CERRAR LA RONDA CUANDO TODOS RESPONDAN
 
-  defp cerrar_si_completa(estado) do
+  defp cerrar_si_completa(%{estado: :en_curso} = estado) do
     if map_size(estado.respuestas) == length(estado.jugadores) do
       cerrar_ronda(estado)
     else
       estado
     end
   end
+
+  defp cerrar_si_completa(estado), do: estado
 
   # CERRAR RONDA
 
@@ -648,100 +696,114 @@ defmodule Trivia.Partida do
 
   # FINALIZAR PARTIDA Y GENERAR RANKING
 
-defp finalizar_partida(estado) do
-  if estado.temporizador do
-    Process.cancel_timer(estado.temporizador)
-  end
+  defp finalizar_partida(estado) do
+    if estado.temporizador do
+      Process.cancel_timer(estado.temporizador)
+    end
 
-  ranking =
-    estado.puntajes
-    |> Enum.map(fn {usuario, puntaje} ->
-      %{
-        usuario: usuario,
-        puntaje: puntaje
-      }
-    end)
-    |> Enum.sort_by(fn jugador ->
-      {-jugador.puntaje, jugador.usuario}
-    end)
+    ranking =
+      estado.puntajes
+      |> Enum.map(fn {usuario, puntaje} ->
+        %{
+          usuario: usuario,
+          puntaje: puntaje
+        }
+      end)
+      |> Enum.sort_by(fn jugador ->
+        {-jugador.puntaje, jugador.usuario}
+      end)
 
-  mayor_puntaje =
-    ranking
-    |> Enum.map(& &1.puntaje)
-    |> Enum.max(fn -> 0 end)
+    mayor_puntaje =
+      ranking
+      |> Enum.map(& &1.puntaje)
+      |> Enum.max(fn -> 0 end)
 
-  ganadores =
-    Enum.filter(
-      ranking,
-      &(&1.puntaje == mayor_puntaje)
-    )
-    |> Enum.map(& &1.usuario)
+    ganadores =
+      Enum.filter(
+        ranking,
+        &(&1.puntaje == mayor_puntaje)
+      )
+      |> Enum.map(& &1.usuario)
 
-  ganador =
-    Enum.join(ganadores, ", ")
+    ganador =
+      Enum.join(ganadores, ", ")
 
-  jugadores_resultado =
-    Enum.map(ranking, fn jugador ->
-      %{
-        "usuario" => jugador.usuario,
-        "puntaje" => jugador.puntaje
-      }
-    end)
+    jugadores_resultado =
+      Enum.map(ranking, fn jugador ->
+        %{
+          "usuario" => jugador.usuario,
+          "puntaje" => jugador.puntaje
+        }
+      end)
 
-  resultado = %{
-    "fecha" => DateTime.utc_now() |> DateTime.to_iso8601(),
-    "id" => estado.id,
-    "tema" => estado.tema,
-    "nivel" => Atom.to_string(estado.nivel),
-    "ganador" => ganador,
-    "jugadores" => jugadores_resultado
-  }
-
-  resultado_persistencia =
-    Trivia.Persistencia.guardar_resultado(
-      resultado,
-      estado.ruta_historial
-    )
-
-  enviar(
-    estado.cliente,
-    {
-      :partida_finalizada,
-      estado.id,
-      ranking,
-      ganadores
+    resultado = %{
+      "fecha" => DateTime.utc_now() |> DateTime.to_iso8601(),
+      "id" => estado.id,
+      "tema" => estado.tema,
+      "nivel" => Atom.to_string(estado.nivel),
+      "ganador" => ganador,
+      "jugadores" => jugadores_resultado
     }
-  )
 
-  case resultado_persistencia do
-    :ok ->
-      enviar(
-        estado.cliente,
-        {:resultado_guardado, estado.id}
+    resultado_persistencia =
+      Trivia.Persistencia.guardar_resultado(
+        resultado,
+        estado.ruta_historial
       )
 
-    {:error, motivo} ->
-      enviar(
-        estado.cliente,
-        {:error_persistencia, estado.id, motivo}
-      )
+    enviar(
+      estado.cliente,
+      {
+        :partida_finalizada,
+        estado.id,
+        ranking,
+        ganadores
+      }
+    )
+
+    case resultado_persistencia do
+      :ok ->
+        enviar(
+          estado.cliente,
+          {:resultado_guardado, estado.id}
+        )
+
+      {:error, motivo} ->
+        enviar(
+          estado.cliente,
+          {:error_persistencia, estado.id, motivo}
+        )
+    end
+
+    GenServer.cast(
+      estado.gestor,
+      {:partida_cerrada, estado.id, self()}
+    )
+
+    detener_bots(%{
+      estado
+      | estado: :finalizada,
+        temporizador: nil,
+        referencia_ronda: nil
+    })
+    |> programar_cierre()
   end
 
-  detener_bots(%{
-    estado
-    | estado: :finalizada,
-      temporizador: nil,
-      referencia_ronda: nil
-  })
-end
+  # PROGRAMAR LA TERMINACIÓN DEL PROCESO
 
+  defp programar_cierre(estado) do
+    send(self(), :cerrar_proceso)
+    estado
+  end
 
   # DETENER BOTS
 
   defp detener_bots(estado) do
     Enum.each(estado.jugadores, fn jugador ->
       if jugador.tipo == :bot and is_pid(jugador.pid) do
-        Process.exit(jugador.pid, :shutdown)
+        if Process.alive?(jugador.pid) do
+          GenServer.stop(jugador.pid, :normal)
+        end
       end
     end)
 

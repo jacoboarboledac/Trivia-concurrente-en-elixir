@@ -31,7 +31,9 @@ defmodule Trivia.GestorJugadores do
     ruta_historial =
       Keyword.get(opciones, :ruta_historial, "data/results.log")
 
-    case Persistencia.cargar_usuarios(ruta_usuarios) do
+    almacen = Keyword.get(opciones, :almacen, Persistencia)
+
+    case almacen.cargar_usuarios(ruta_usuarios) do
       {:ok, usuarios} ->
         {:ok,
          %{
@@ -39,7 +41,8 @@ defmodule Trivia.GestorJugadores do
            sesiones: %{},
            monitores: %{},
            ruta_usuarios: ruta_usuarios,
-           ruta_historial: ruta_historial
+           ruta_historial: ruta_historial,
+           almacen: almacen
          }}
 
       {:error, motivo} ->
@@ -59,12 +62,9 @@ defmodule Trivia.GestorJugadores do
   end
 
 
-def connect(usuario, clave, pid_cliente, servidor) do
-  GenServer.call(
-    servidor,
-    {:connect, usuario, clave, pid_cliente}
-  )
-end
+  def connect(usuario, clave, pid_cliente, servidor) do
+    GenServer.call(servidor, {:connect, usuario, clave, pid_cliente})
+  end
 
 
   def disconnect(servidor \\ __MODULE__) do
@@ -88,6 +88,21 @@ end
     )
   end
 
+
+  # Versiones para peticiones enviadas por Trivia.Servidor.
+  # Usan el PID real del cliente/receptor, no el del servidor.
+
+  def disconnect(pid_cliente, servidor) when is_pid(pid_cliente) do
+    GenServer.call(servidor, {:disconnect, pid_cliente})
+  end
+
+  def score(pid_cliente, servidor) when is_pid(pid_cliente) do
+    GenServer.call(servidor, {:score, pid_cliente})
+  end
+
+  def ranking(tema, pid_cliente, servidor) when is_pid(pid_cliente) do
+    GenServer.call(servidor, {:ranking, tema, pid_cliente})
+  end
 
   def usuario_por_pid(pid_cliente, servidor \\ __MODULE__) do
     GenServer.call(
@@ -161,7 +176,8 @@ end
         respuesta =
           calcular_score(
             usuario,
-            estado.ruta_historial
+            estado.ruta_historial,
+            estado.almacen
           )
 
         {:reply, respuesta, estado}
@@ -182,7 +198,7 @@ end
 
       true ->
         respuesta =
-          calcular_ranking(tema, estado.ruta_historial)
+          calcular_ranking(tema, estado.ruta_historial, estado.almacen)
 
         {:reply, respuesta, estado}
     end
@@ -260,7 +276,9 @@ end
   end
 
   defp registrar_y_conectar(usuario, clave, pid, estado) do
-    case Persistencia.registrar_usuario(
+    almacen = estado.almacen
+
+    case almacen.registrar_usuario(
            usuario,
            clave,
            estado.ruta_usuarios
@@ -294,8 +312,8 @@ end
   # ESTADÍSTICAS DEL JUGADOR
   # -------------------------
 
-  defp calcular_score(usuario, ruta_historial) do
-    case Persistencia.leer_historial(ruta_historial) do
+  defp calcular_score(usuario, ruta_historial, almacen) do
+    case almacen.leer_historial(ruta_historial) do
       {:ok, lineas} ->
         temas = puntajes_por_tema(lineas, usuario)
 
@@ -377,8 +395,8 @@ end
   # RANKING HISTÓRICO
   # -------------------------
 
-  defp calcular_ranking(tema, ruta_historial) do
-    case Persistencia.leer_historial(ruta_historial) do
+  defp calcular_ranking(tema, ruta_historial, almacen) do
+    case almacen.leer_historial(ruta_historial) do
       {:ok, lineas} ->
         resultados =
           Enum.reduce(lineas, %{}, fn linea, acumulado ->
