@@ -268,7 +268,6 @@ defmodule Trivia.Cliente do
       IO.puts("#{numero}) #{titulo}")
     end)
 
-    IO.puts("5) Escribir otro tema")
     IO.puts("0) Volver")
 
     case leer("Tema: ") do
@@ -278,18 +277,10 @@ defmodule Trivia.Cliente do
       "0" ->
         :cancelado
 
-      "5" ->
-        tema = leer("Identificador del tema (minúsculas, sin espacios): ")
-
-        if is_binary(tema) and Regex.match?(~r/^[a-z0-9_]+$/, tema) do
-          {:ok, tema}
-        else
-          IO.puts("Tema inválido.")
-          elegir_tema()
-        end
-
       opcion ->
-        case Enum.find(@temas, fn {numero, _, _} -> numero == opcion end) do
+        case Enum.find(@temas, fn {numero, _, _} ->
+               numero == opcion
+             end) do
           {_, tema, _} ->
             {:ok, tema}
 

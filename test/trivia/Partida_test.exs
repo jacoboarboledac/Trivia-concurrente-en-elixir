@@ -1,4 +1,3 @@
-
 defmodule Trivia.PartidaTest do
   use ExUnit.Case, async: true
 
@@ -44,7 +43,6 @@ defmodule Trivia.PartidaTest do
     assert estado.tiempo_por_pregunta == 15
   end
 
-
   test "agrega un bot fácil a la partida", context do
     assert {:ok, "bot_1", pid_bot} =
              Partida.agregar_bot(context.partida, :facil)
@@ -81,4 +79,34 @@ defmodule Trivia.PartidaTest do
              Partida.agregar_bot(context.partida)
   end
 
+  test "rechaza agregar bots a una partida iniciada", context do
+    partida = context.partida
+
+    assert {:ok, "bot_1", _} =
+             Partida.agregar_bot(partida, :facil)
+
+    assert {:ok, "bot_2", _} =
+             Partida.agregar_bot(partida, :dificil)
+
+    preguntas =
+      for numero <- 1..5 do
+        %{
+          "tema" => "ciencia",
+          "nivel" => :basico,
+          "enunciado" => "Pregunta #{numero}",
+          "opciones" => ["Uno", "Dos", "Tres", "Cuatro"],
+          "respuesta_correcta" => "A"
+        }
+      end
+
+    assert :ok =
+             Partida.iniciar(
+               partida,
+               preguntas,
+               :basico
+             )
+
+    assert {:error, :partida_iniciada} =
+             Partida.agregar_bot(partida, :facil)
+  end
 end

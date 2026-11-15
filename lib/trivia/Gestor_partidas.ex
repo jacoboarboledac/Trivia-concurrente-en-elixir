@@ -18,20 +18,45 @@ defmodule Trivia.GestorPartidas do
 
   @impl true
   def init(opciones) do
-    {:ok,
-     %{
-       partidas: %{},
-       partidas_por_creador: %{},
-       siguiente_id: 1001,
-       supervisor:
-         Keyword.get(opciones, :supervisor, Trivia.SupervisorPartidas),
-       ruta_preguntas:
-         Keyword.get(opciones, :ruta_preguntas, "data/questions.json"),
-       ruta_historial:
-         Keyword.get(opciones, :ruta_historial, "data/results.log"),
-       almacen:
-         Keyword.get(opciones, :almacen, Trivia.Persistencia)
-     }}
+    ruta_preguntas =
+      Keyword.get(
+        opciones,
+        :ruta_preguntas,
+        "data/questions.json"
+      )
+
+    case Trivia.BancoPreguntas.cargar(ruta_preguntas) do
+      {:ok, preguntas} ->
+        {:ok,
+         %{
+           partidas: %{},
+           partidas_por_creador: %{},
+           siguiente_id: 1001,
+           supervisor:
+             Keyword.get(
+               opciones,
+               :supervisor,
+               Trivia.SupervisorPartidas
+             ),
+           ruta_preguntas: ruta_preguntas,
+           preguntas: preguntas,
+           ruta_historial:
+             Keyword.get(
+               opciones,
+               :ruta_historial,
+               "data/results.log"
+             ),
+           almacen:
+             Keyword.get(
+               opciones,
+               :almacen,
+               Trivia.Persistencia
+             )
+         }}
+
+      {:error, motivo} ->
+        {:stop, {:banco_preguntas_invalido, motivo}}
+    end
   end
 
   # API PÚBLICA
@@ -112,15 +137,22 @@ defmodule Trivia.GestorPartidas do
           {:error, :tiempo_invalido}
 
         true ->
-          with {:ok, preguntas} <-
-                 Trivia.BancoPreguntas.cargar(estado.ruta_preguntas),
-               true <- Enum.any?(preguntas, &(&1["tema"] == tema)),
+          with true <-
+                 Enum.any?(
+                   estado.preguntas,
+                   &(&1["tema"] == tema)
+                 ),
                {:ok, historial} <-
                  almacen.leer_historial(estado.ruta_historial),
-               nivel = Trivia.Nivel.nivel_jugador(historial, usuario, tema),
+               nivel =
+                 Trivia.Nivel.nivel_jugador(
+                   historial,
+                   usuario,
+                   tema
+                 ),
                {:ok, _sorteo} <-
                  Trivia.BancoPreguntas.sortear(
-                   preguntas,
+                   estado.preguntas,
                    tema,
                    cantidad,
                    nivel
@@ -173,8 +205,7 @@ defmodule Trivia.GestorPartidas do
             estado
             | siguiente_id: estado.siguiente_id + 1,
               partidas: Map.put(estado.partidas, id, nueva_partida),
-              partidas_por_creador:
-                Map.put(estado.partidas_por_creador, creador, id)
+              partidas_por_creador: Map.put(estado.partidas_por_creador, creador, id)
           }
 
           {:reply, {:ok, id, pid}, nuevo_estado}
@@ -197,29 +228,25 @@ defmodule Trivia.GestorPartidas do
         {:reply, {:error, :no_es_el_creador}, estado}
 
       %{pid: pid} ->
-        almacen = estado.almacen
         datos_partida = Trivia.Partida.consultar_estado(pid)
 
+        # Conservar el nivel establecido al crear la partida.
+        nivel = datos_partida.nivel
+
         resultado =
-          with {:ok, preguntas} <-
-                 Trivia.BancoPreguntas.cargar(estado.ruta_preguntas),
-               {:ok, historial} <-
-                 almacen.leer_historial(estado.ruta_historial),
-               nivel =
-                 Trivia.Nivel.nivel_jugador(
-                   historial,
-                   usuario,
-                   datos_partida.tema
-                 ),
-               {:ok, preguntas_sorteadas} <-
+          with {:ok, preguntas_sorteadas} <-
                  Trivia.BancoPreguntas.sortear(
-                   preguntas,
+                   estado.preguntas,
                    datos_partida.tema,
                    datos_partida.numero_preguntas,
                    nivel
                  ),
                :ok <-
-                 Trivia.Partida.iniciar(pid, preguntas_sorteadas, nivel) do
+                 Trivia.Partida.iniciar(
+                   pid,
+                   preguntas_sorteadas,
+                   nivel
+                 ) do
             {:ok, nivel}
           else
             {:error, motivo} -> {:error, motivo}
@@ -265,8 +292,7 @@ defmodule Trivia.GestorPartidas do
         nuevo_estado = %{
           estado
           | partidas: Map.put(estado.partidas, id, nueva_partida),
-            partidas_por_creador:
-              Map.put(estado.partidas_por_creador, creador, id)
+            partidas_por_creador: Map.put(estado.partidas_por_creador, creador, id)
         }
 
         if partida_anterior.pid != pid do

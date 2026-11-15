@@ -8,7 +8,7 @@ defmodule Trivia.Partida do
 
   @niveles [:basico, :intermedio, :avanzado]
   @opciones ["A", "B", "C", "D"]
-  @pausa_entre_rondas 2000
+  @pausa_entre_rondas 3000
 
   # INICIO DEL PROCESO
 
@@ -92,6 +92,7 @@ defmodule Trivia.Partida do
       tiempo_por_pregunta: Keyword.fetch!(opciones, :tiempo_por_pregunta),
       preguntas: [],
       ruta_historial: ruta_historial,
+      almacen: Keyword.get(opciones, :almacen, Trivia.Persistencia),
       jugadores: [jugador],
       puntajes: %{creador => 0},
       estado: :esperando,
@@ -450,8 +451,12 @@ defmodule Trivia.Partida do
     inicio = System.monotonic_time(:millisecond)
 
     Enum.each(estado.jugadores, fn jugador ->
-      pregunta_cliente =
-        Map.drop(pregunta, ["respuesta_correcta"])
+      pregunta_para_jugador =
+        if jugador.tipo == :bot do
+          Map.put(pregunta, "referencia_ronda", referencia)
+        else
+          Map.drop(pregunta, ["respuesta_correcta"])
+        end
 
       enviar(
         jugador.pid,
@@ -460,19 +465,10 @@ defmodule Trivia.Partida do
           estado.id,
           indice + 1,
           estado.numero_preguntas,
-          pregunta_cliente,
+          pregunta_para_jugador,
           estado.tiempo_por_pregunta
         }
       )
-
-      if jugador.tipo == :bot do
-        Trivia.Bot.pregunta(
-          jugador.pid,
-          pregunta,
-          referencia,
-          estado.tiempo_por_pregunta
-        )
-      end
     end)
 
     %{
@@ -746,7 +742,7 @@ defmodule Trivia.Partida do
     }
 
     resultado_persistencia =
-      Trivia.Persistencia.guardar_resultado(
+      estado.almacen.guardar_resultado(
         resultado,
         estado.ruta_historial
       )

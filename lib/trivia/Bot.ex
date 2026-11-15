@@ -18,15 +18,6 @@ defmodule Trivia.Bot do
     GenServer.call(pid, :consultar)
   end
 
-  # RECIBIR PREGUNTAS
-
-  def pregunta(pid, pregunta, referencia, tiempo) do
-    GenServer.cast(
-      pid,
-      {:pregunta, pregunta, referencia, tiempo}
-    )
-  end
-
   # DECIDIR RESPUESTA
 
   def decidir(dificultad, nivel, respuesta_correcta, tiempo_pregunta)
@@ -100,12 +91,13 @@ defmodule Trivia.Bot do
   # RECEPCIÓN DE PREGUNTAS
 
   @impl true
-  def handle_cast(
-        {:pregunta, pregunta, referencia, tiempo},
+  def handle_info(
+        {:nueva_pregunta, _id, _numero, _total, pregunta, tiempo},
         estado
       ) do
     nivel = pregunta["nivel"]
     respuesta_correcta = pregunta["respuesta_correcta"]
+    referencia = pregunta["referencia_ronda"]
 
     {respuesta, retardo} =
       decidir(
@@ -143,34 +135,24 @@ defmodule Trivia.Bot do
 
     {:noreply, estado}
   end
+  
+  # CONFIRMACIÓN DE RESPUESTA RECIBIDA
 
   @impl true
   def handle_info(
-        {:nueva_pregunta, _id, _numero, _total, _pregunta, _tiempo},
+        {:respuesta_recibida, _id, _nombre},
         estado
       ) do
     {:noreply, estado}
   end
 
+  # NOTIFICACIÓN DE FINALIZACIÓN DE RONDA
 
-# CONFIRMACIÓN DE RESPUESTA RECIBIDA
-
-@impl true
-def handle_info(
-      {:respuesta_recibida, _id, _nombre},
-      estado
-    ) do
-  {:noreply, estado}
-end
-
-# NOTIFICACIÓN DE FINALIZACIÓN DE RONDA
-
-@impl true
-def handle_info(
-      {:fin_ronda, _id, _respuesta_correcta, _puntos, _total},
-      estado
-    ) do
-  {:noreply, estado}
-end
-
+  @impl true
+  def handle_info(
+        {:fin_ronda, _id, _respuesta_correcta, _puntos, _total},
+        estado
+      ) do
+    {:noreply, estado}
+  end
 end
