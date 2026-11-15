@@ -102,8 +102,7 @@ defmodule Trivia.Receptor do
 
     datos = %{id: id, numero: numero, total: total, tiempo: tiempo}
 
-    {:noreply,
-     %{estado | partida_id: id, fase: :en_curso, pregunta: datos}}
+    {:noreply, %{estado | partida_id: id, fase: :en_curso, pregunta: datos}}
   end
 
   def handle_info({:fin_ronda, id, correcta, puntos, total}, estado) do
@@ -113,6 +112,36 @@ defmodule Trivia.Receptor do
     IO.puts("Puntaje acumulado: #{total}")
     IO.puts("La siguiente ronda llegará automáticamente, si quedan preguntas.")
     {:noreply, %{estado | pregunta: nil}}
+  end
+
+  # MOSTRAR RANKING AL FINALIZAR CADA RONDA
+
+  @impl true
+  def handle_info({:ranking_ronda, id, ranking}, estado) do
+    IO.puts("\n" <> String.duplicate("=", 52))
+    IO.puts(" CLASIFICACION DE LA RONDA - #{id}")
+    IO.puts(String.duplicate("=", 52))
+
+    ranking
+    |> Enum.with_index(1)
+    |> Enum.each(fn {jugador, posicion} ->
+      puntos =
+        if jugador.puntos_ronda > 0 do
+          "+#{jugador.puntos_ronda}"
+        else
+          "#{jugador.puntos_ronda}"
+        end
+
+      IO.puts(
+        "#{posicion}. #{jugador.usuario} | " <>
+          "Ronda: #{puntos} | " <>
+          "Total: #{jugador.puntaje}"
+      )
+    end)
+
+    IO.puts(String.duplicate("=", 52))
+
+    {:noreply, estado}
   end
 
   def handle_info({:partida_finalizada, id, ranking, ganadores}, estado) do

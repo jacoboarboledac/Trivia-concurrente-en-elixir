@@ -669,6 +669,26 @@ defmodule Trivia.Partida do
       )
     end)
 
+    # Construir el ranking de la ronda
+    ranking_ronda =
+      estado.jugadores
+      |> Enum.map(fn jugador ->
+        %{
+          usuario: jugador.usuario,
+          puntos_ronda: Map.get(estado.puntos_ronda, jugador.usuario, 0),
+          puntaje: Map.get(estado.puntajes, jugador.usuario, 0)
+        }
+      end)
+      |> Enum.sort_by(fn jugador ->
+        {-jugador.puntaje, jugador.usuario}
+      end)
+
+    # Enviar la clasificación al cliente humano
+    enviar(
+      estado.cliente,
+      {:ranking_ronda, estado.id, ranking_ronda}
+    )
+
     nuevo_estado = %{
       estado
       | estado: :pausa,
